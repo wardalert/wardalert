@@ -1,0 +1,29 @@
+﻿@page
+@model wardalert.Pages.Register.formModel
+@{
+}
+
+<h1>Register for the training form</h1>
+
+<form class="m-4">
+    <div class="mb-2">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" style="max-width:300px;" id="name" placeholder="Ram Bahadur" />
+    </div>
+
+    <div class="mb-2">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" style="max-width:300px;" id="address" placeholder="Palpa" />
+    </div>
+
+    <div class="mb-2">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" style="max-width:300px;" id="email" placeholder="ram@gmail.com" />
+    </div>
+
+    <div class="mb-2">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" style="max-width:300px;" id="phone" placeholder="9876543210" />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
