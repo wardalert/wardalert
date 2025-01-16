@@ -1,0 +1,79 @@
+# Ignore environment-specific files
+.env
+.env.*  # For environment-specific .env files (e.g., .env.development, .env.production)
+
+.vs/
+
+# Ignore build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET specific files
+wwwroot/
+wwwroot/lib/
+
+# Logs
+*.log
+Logs/
+
+# Visual Studio Code specific files
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# Rider IDE specific files
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet Packages
+*.nupkg
+packages/
+project.lock.json
+
+# Dependency cache
+node_modules/
+*.npm/
+
+# Publish output
+.publish/
+*.PublishProfiles/
+
+# Azure and Deployment
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+appsettings.json
+
+# Optional: Ignore sensitive files
+secrets.json
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Backup files
+*.orig
+*.old
+
+# Security settings
+.key/
+.key-store/
+
+
