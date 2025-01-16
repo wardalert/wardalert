@@ -12,19 +12,27 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">wardalert</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Ward Alert</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                    <ul class="navbar-nav ms-auto">
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="trainingDropDown" text-dark role="button" aria-expanded="false">Upcoming</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="trainingDropDown">
+                                <li><a class="dropdown-item" asp-page="/Training/Upcoming">Upcoming Training</a></li>
+                                <li><a class="dropdown-item" asp-page="/Training/Ongoing">Ongoing Training</a></li>
+                                <li><a class="dropdown-item" asp-page="/Training/Expired">Expired Training</a></li>
+                            </ul>
+
+
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -36,10 +44,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - wardalert - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
+    <footer class="border-top footer text-muted mt-auto">
+        <h5>Ward Alert</h5>
+        <p>Email: <i>sudipaamgai@gmail.com</i></p>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
