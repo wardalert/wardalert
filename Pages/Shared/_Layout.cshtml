@@ -1,59 +1,207 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - wardalert</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@* 
+    <!-- Correcting the Bootstrap CSS link -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/wardalert.styles.css" asp-append-version="true" />
+ *@
+    <title>Welcome to Lalitpur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: #3B5998;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 120px;
+            height: 100px;
+            margin-right: 5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10rem;
+            padding-top: 30px;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+            }
+
+        /* Main Content */
+        .content-wrapper {
+            margin-left: 40px;
+        }
+
+        .main-content {
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            padding: 1rem;
+            justify-content: space-between;
+            display: flex;
+        }
+
+        .welcome-image {
+            width: 850px;
+            height: 500px;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            margin-left: 300px;
+            border: 15px solid black;
+            margin-top: 10px;
+            position: absolute;
+            top: 20%;
+        }
+
+        .haku {
+            width: 85px;
+            position: fixed;
+            top: 110px;
+        }
+
+        .welcome-text {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(181, 24, 24);
+            
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            ;
+            white-space: nowrap;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .ward {
+            color: #d4d3d3;
+            text-decoration: none;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-left: 30rem;
+            font-style: bold;
+        }
+
+        .text {
+            margin-left: 180px;
+            margin-right: 180px;
+            margin-top: 650px;
+            position: relative;
+            font-size: medium;
+            word-spacing: 1.5px;
+            letter-spacing: 0.3px;
+        }
+
+        .info-section {
+            text-align: center;
+        }
+
+        #options {
+            color: rgb(248, 245, 245);
+            background-color: #807979;
+        }
+        /* Dropdown Menu Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3B5998;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Ward Alert</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav ms-auto">
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="trainingDropDown" text-dark role="button" aria-expanded="false">Upcoming</a>
+    <div class="content-wrapper">
+      @*   <img src="./images/12.png" class="haku"> *@
+        <nav class="navbar">
+            <img src="./images/ki.png" alt="Lalitpur Logo" class="logo">
+            <div class="nav-links">
+                <a href="Index">Home</a>
+                <a href="/Notice">Notice</a>
 
-                            <ul class="dropdown-menu" aria-labelledby="trainingDropDown">
-                                <li><a class="dropdown-item" asp-page="/Training/Upcoming">Upcoming Training</a></li>
-                                <li><a class="dropdown-item" asp-page="/Training/Ongoing">Ongoing Training</a></li>
-                                <li><a class="dropdown-item" asp-page="/Training/Expired">Expired Training</a></li>
-                            </ul>
-
-
-                        </li>
-
-
-                    </ul>
+                <!-- Dropdown Menu without Bootstrap -->
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Training</a>
+                    <div class="dropdown-content">
+                        <a href="/Upcoming">Upcoming</a>
+                        <a href="/Ongoing">Ongoing</a>
+                        <a href="/Expired">Completed</a>
+                    </div>
                 </div>
+                
+                   
+               
+
             </div>
+            <a class="ward">ward 17</a>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+       @*  <!-- Include Bootstrap Bundle (with Popper.js) -->
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Optionally, include site.js for custom scripts -->
+        <script src="~/js/site.js" asp-append-version="true"></script> *@ 
     </div>
 
-    <footer class="border-top footer text-muted mt-auto">
-        <h5>Ward Alert</h5>
-        <p>Email: <i>sudipaamgai@gmail.com</i></p>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
+
