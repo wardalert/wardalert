@@ -16,9 +16,6 @@ obj/
 *.userosscache
 *.sln.docstates
 
-# ASP.NET specific files
-wwwroot/
-wwwroot/lib/
 
 # Logs
 *.log
