@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @* 
     <!-- Correcting the Bootstrap CSS link -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/wardalert.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-page="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" asp-page="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-page="~/wardalert.styles.css" asp-append-version="true" />
  *@
     <title>Welcome to Lalitpur</title>
     <style>
@@ -32,6 +32,9 @@
             z-index: 1000;
         }
 
+      
+
+
         .logo {
             width: 120px;
             height: 100px;
@@ -40,7 +43,7 @@
 
         .nav-links {
             display: flex;
-            gap: 10rem;
+            gap: 7rem;
             padding-top: 30px;
         }
 
@@ -51,10 +54,13 @@
                 text-transform: uppercase;
             }
 
+       
+
         /* Main Content */
-        .content-wrapper {
-            margin-left: 40px;
-        }
+         .content-wrapper {
+            margin-left: 4px;
+            margin-right:4px;
+        }  
 
         .main-content {
             width: auto;
@@ -80,32 +86,33 @@
 
         .haku {
             width: 85px;
+             margin-left:-12px;
             position: fixed;
-            top: 110px;
+            top: 104px;
         }
 
         .welcome-text {
             position: absolute;
             top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left:28%;
             color: rgb(181, 24, 24);
             
             font-size: 3rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            ;
+            
             white-space: nowrap;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         .ward {
             color: #d4d3d3;
-            text-decoration: none;
+        
             font-size: 1.5rem;
             text-transform: uppercase;
-            margin-left: 30rem;
+            margin-left:auto;
             font-style: bold;
+            padding-right:10px;
         }
 
         .text {
@@ -148,10 +155,8 @@
                 display: block;
             }
 
-                .dropdown-content a:hover {
-                    background-color: #ddd;
-                }
-
+              
+     
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -168,16 +173,16 @@
         <nav class="navbar">
             <img src="./images/ki.png" alt="Lalitpur Logo" class="logo">
             <div class="nav-links">
-                <a href="Index">Home</a>
-                <a href="/Notice">Notice</a>
+                <a asp-page="Index">Home</a>
+                <a asp-page="/Notice">Notice</a>
 
                 <!-- Dropdown Menu without Bootstrap -->
                 <div class="dropdown">
-                    <a href="#" class="dropbtn">Training</a>
+                    <a asp-page="#" class="dropbtn">Training</a>
                     <div class="dropdown-content">
-                        <a href="/Upcoming">Upcoming</a>
-                        <a href="/Ongoing">Ongoing</a>
-                        <a href="/Expired">Completed</a>
+                        <a asp-page="/Upcoming">Upcoming</a>
+                        <a asp-page="/Ongoing">Ongoing</a>
+                        <a asp-page="/Expired">Completed</a>
                     </div>
                 </div>
                 
@@ -185,14 +190,23 @@
                
 
             </div>
+            @{
+                var isLoggedIn = Context.Session.GetString("Login") == "true";
+            }
+            @if (isLoggedIn)
+            {
+                <p style="color:#3B5998;">hellohellooooo</p>
+                <div class="nav-links">
+                    <a asp-page="/Dashboard">dashboard</a>
+                    <a asp-page="/Userlist">userlist</a>
+                </div>
+
+            }
             <a class="ward">ward 17</a>
+          
         </nav>
 
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+     
 
        @*  <!-- Include Bootstrap Bundle (with Popper.js) -->
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -200,7 +214,17 @@
         <!-- Optionally, include site.js for custom scripts -->
         <script src="~/js/site.js" asp-append-version="true"></script> *@ 
     </div>
+    @* Check if user is logged in *@
+  
 
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   
 </body>
 
 </html>

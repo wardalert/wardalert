@@ -1,0 +1,50 @@
+﻿@page
+@model wardalert.Pages.Admin.UserlistModel
+@{
+}
+
+<style>
+ .title{
+        position: relative;
+        top: 150px;
+        margin-left: 40px;
+ }
+    table{
+        position:relative;
+        top:160px;
+        background-size:150px;
+        width:90%;
+        height:100%;
+        margin-left:40px;
+        font-size:large;
+      
+        
+        
+
+    }
+</style>
+
+<table border="solid black">
+    <h1 class="title">Userlist
+    </h1>
+   
+        <tr>
+         
+           
+            <th>Training</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        </tr>
+        @foreach (var Userlist in Model.Userlists)
+        {
+            <tr>
+            <td>@Userlist.Training</td>
+            <td>@Userlist.Name</td>
+            <td>@Userlist.Address</td>
+            <td>@Userlist.Phone</td>
+        </tr>
+        }
+    
+</table>
+   

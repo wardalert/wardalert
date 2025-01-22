@@ -1,0 +1,67 @@
+﻿@page
+@model wardalert.Pages.Admin.LoginModel
+@{
+}
+<style>
+    form{
+        position:relative;
+        top:150px;
+        width: 400px;
+        margin-left:580px;
+        padding: 30px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: calc(100% - 20px); /* Adjusts for padding */
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            
+        }
+
+            form button:hover {
+                background: #0056b3;
+            }
+
+    }
+</style>
+
+    <form method="post" class="ff">
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" class="form-control"  asp-for="Email" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" id="Password" name="Password" class="form-control" asp-for="Password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+
+
+
