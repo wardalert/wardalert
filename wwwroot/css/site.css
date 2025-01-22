@@ -1,7 +1,3 @@
-html {
-  font-size: 14px;
-}
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -13,10 +9,180 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #1e293b;
+}
+
+
+
+
+
+
+
+
+/*Navbar section*/
+header.sticky-top {
+    background-color: rgba(30, 41, 59, 0.8);
+}
+
+.navbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand .logo-bg {
+        width: 40px;
+        height: 40px;
+        background-color: #ef4444;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.2rem;
+}
+
+.navbar-collapse {
+    justify-content: space-between;
+}
+
+.dropdown-menu-dark {
+    background-color: #1f2937;
+}
+/*navbar section*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Logo Styling */
+.logo-bg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d9534f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+/*Cards of Home page*/
+.card {
+    
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+        transform: scale(1.05);
+}
+
+
+.bg-gradient-red {
+    background: linear-gradient(to bottom right, #dc3545, #7f1d1d);
+}
+
+.bg-gradient-slate {
+    background: linear-gradient(to bottom right, #334155, #0f172a);
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(to bottom right, #7f1d1d, #000000);
+}
+
+.btn-danger {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-danger:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+
+.dropdown-menu-dark {
+    background-color: #1e293b;
+}
+
+
+
+
+
+
+@keyframes cartoonFloat {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+
+    25% {
+        transform: translateY(-15px) rotate(-5deg);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+
+    75% {
+        transform: translateY(15px) rotate(5deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+
+.floating-kite {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: rgba(130, 77, 00,0.4);
+    animation: cartoonFloat 10s infinite ease-in-out;
+    opacity: 0.9;
+    z-index: -1; /* Ensure kites appear behind the content */
+}
+
+.floating-container {
+    position: absolute;
+    width:100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(255, 255, 255,0); /* Translucent background */
 }

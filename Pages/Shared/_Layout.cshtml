@@ -1,231 +1,101 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-@* 
-    <!-- Correcting the Bootstrap CSS link -->
-    <link rel="stylesheet" asp-page="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" asp-page="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" asp-page="~/wardalert.styles.css" asp-append-version="true" />
- *@
-    <title>Welcome to Lalitpur</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            width: 100%;
-            background-color: #3B5998;
-            padding: 2px;
-            display: flex;
-            align-items: center;
-            z-index: 1000;
-        }
-
-      
-
-
-        .logo {
-            width: 120px;
-            height: 100px;
-            margin-right: 5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 7rem;
-            padding-top: 30px;
-        }
-
-            .nav-links a {
-                color: white;
-                text-decoration: none;
-                font-size: 1.2rem;
-                text-transform: uppercase;
-            }
-
-       
-
-        /* Main Content */
-         .content-wrapper {
-            margin-left: 4px;
-            margin-right:4px;
-        }  
-
-        .main-content {
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-            padding: 1rem;
-            justify-content: space-between;
-            display: flex;
-        }
-
-        .welcome-image {
-            width: 850px;
-            height: 500px;
-            display: block;
-            justify-content: center;
-            align-items: center;
-            margin-left: 300px;
-            border: 15px solid black;
-            margin-top: 10px;
-            position: absolute;
-            top: 20%;
-        }
-
-        .haku {
-            width: 85px;
-             margin-left:-12px;
-            position: fixed;
-            top: 104px;
-        }
-
-        .welcome-text {
-            position: absolute;
-            top: 55%;
-            left:28%;
-            color: rgb(181, 24, 24);
-            
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            
-            white-space: nowrap;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
-        .ward {
-            color: #d4d3d3;
-        
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            margin-left:auto;
-            font-style: bold;
-            padding-right:10px;
-        }
-
-        .text {
-            margin-left: 180px;
-            margin-right: 180px;
-            margin-top: 650px;
-            position: relative;
-            font-size: medium;
-            word-spacing: 1.5px;
-            letter-spacing: 0.3px;
-        }
-
-        .info-section {
-            text-align: center;
-        }
-
-        #options {
-            color: rgb(248, 245, 245);
-            background-color: #807979;
-        }
-        /* Dropdown Menu Styling */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-              
-     
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: #3B5998;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="content-wrapper">
-      @*   <img src="./images/12.png" class="haku"> *@
-        <nav class="navbar">
-            <img src="./images/ki.png" alt="Lalitpur Logo" class="logo">
-            <div class="nav-links">
-                <a asp-page="Index">Home</a>
-                <a asp-page="/Notice">Notice</a>
-
-                <!-- Dropdown Menu without Bootstrap -->
-                <div class="dropdown">
-                    <a asp-page="#" class="dropbtn">Training</a>
-                    <div class="dropdown-content">
-                        <a asp-page="/Upcoming">Upcoming</a>
-                        <a asp-page="/Ongoing">Ongoing</a>
-                        <a asp-page="/Expired">Completed</a>
-                    </div>
-                </div>
-                
-                   
-               
-
-            </div>
-            @{
-                var isLoggedIn = Context.Session.GetString("Login") == "true";
-            }
-            @if (isLoggedIn)
-            {
-                <p style="color:#3B5998;">hellohellooooo</p>
-                <div class="nav-links">
-                    <a asp-page="/Dashboard">dashboard</a>
-                    <a asp-page="/Userlist">userlist</a>
-                </div>
-
-            }
-            <a class="ward">ward 17</a>
-          
-        </nav>
-
-     
-
-       @*  <!-- Include Bootstrap Bundle (with Popper.js) -->
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Optionally, include site.js for custom scripts -->
-        <script src="~/js/site.js" asp-append-version="true"></script> *@ 
-    </div>
-    @* Check if user is logged in *@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ward Alert</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
   
 
+</head>
+<body class="bg-slate-900 text-white">
     
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="floating-container" id="kite-container">
+        <!-- Kites will be dynamically added here -->
     </div>
 
-   
+    <header class="sticky-top bg-slate-900-80 border-bottom">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
+                    <div class="logo-bg d-flex align-items-center justify-content-center me-2">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <span class="fw-bold">Ward Alert</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Trainings
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="Ongoing">Ongoing Trainings</a></li>
+                                <li><a class="dropdown-item" href="Upcoming">Upcoming Trainings</a></li>
+                                <li><a class="dropdown-item" href="Expired">Expired Trainings</a></li>
+                            </ul>
+                        </li>
+                        @if (Context.Session.GetString("Login") == "true")
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Userlist">User List</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-danger ms-2" asp-area="" asp-page="/AdminLogin">Admin Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Function to generate random kites
+        function generateKites(count) {
+            const container = document.getElementById('kite-container');
+
+            for (let i = 0; i < count; i++) {
+                const kite = document.createElement('div');
+                kite.className = 'floating-kite';
+                kite.style.left = Math.random() * 80 + '%';
+                kite.style.top = Math.random() * 80 + '%';
+                kite.style.animationDelay = Math.random() * 10 + 's';
+                kite.style.opacity = 0.3 + Math.random() * 0.4; // Random translucency
+                kite.style.width = 80 + Math.random() * 40 + 'px'; // Random size
+                kite.style.height = kite.style.width;
+
+
+                container.appendChild(kite);
+            }
+        }
+
+        // Generate 10 kites
+        generateKites(10);
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>
-
