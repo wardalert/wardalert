@@ -11,7 +11,7 @@
   
 
 </head>
-<body class="bg-slate-900 text-white">
+<body class="bg-slate-900 text-black">
     
     <div class="floating-container" id="kite-container">
         <!-- Kites will be dynamically added here -->
@@ -33,6 +33,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-light ms-2" asp-area="" asp-page="/Events">Event</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Trainings
@@ -55,7 +58,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn btn-danger ms-2" asp-area="" asp-page="/AdminLogin">Admin Login</a>
+                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Login">Admin Login</a>
                             </li>
                         }
                     </ul>
