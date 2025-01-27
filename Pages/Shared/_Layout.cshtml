@@ -12,12 +12,12 @@
 
 </head>
 <body class="bg-slate-900 text-black">
-    
-    <div class="floating-container" id="kite-container">
-        <!-- Kites will be dynamically added here -->
-    </div>
 
-    <header class="sticky-top bg-slate-900-80 border-bottom">
+    <div class="floating-container" id="kite-container">
+    </div> 
+
+
+    <header class="sticky-top bg-slate-900-80">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
@@ -67,7 +67,7 @@
         </nav>
     </header>
 
-    <main role="main" class="pb-3">
+    <main role="main" class="">
         @RenderBody()
     </main>
 
@@ -75,7 +75,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script>
+
+
+   <!--
+
+   <script>
         // Function to generate random kites
         function generateKites(count) {
             const container = document.getElementById('kite-container');
@@ -86,7 +90,7 @@
                 kite.style.left = Math.random() * 80 + '%';
                 kite.style.top = Math.random() * 80 + '%';
                 kite.style.animationDelay = Math.random() * 10 + 's';
-                kite.style.opacity = 0.3 + Math.random() * 0.4; // Random translucency
+                kite.style.opacity = 0.3 + Math.random() * 0.3; // Random translucency
                 kite.style.width = 80 + Math.random() * 40 + 'px'; // Random size
                 kite.style.height = kite.style.width;
 
@@ -98,7 +102,7 @@
         // Generate 10 kites
         generateKites(10);
     </script>
-
     @await RenderSectionAsync("Scripts", required: false)
+   -->
 </body>
 </html>

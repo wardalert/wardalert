@@ -12,15 +12,28 @@ html {
     position: relative;
     min-height: 100%;
     font-size: 14px;
+    overflow-x:hidden;
 }
 
 body {
-    margin-bottom: 60px;
     background-color: #f5f5f5;
 }
 .light-text {
     color: #333333;
 }
+
+
+
+.homepagecontainer {
+    margin-top: 4rem;
+    padding: 4rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('../images/patan.jpg');
+    background-position: center;
+    background-size: 100% 100%;
+    min-height: 48rem;
+    background-repeat: no-repeat;
+}
+
 
 
 
@@ -39,10 +52,14 @@ body {
 
 /*Navbar section*/
 header.sticky-top {
-    background-color: #14468c;
 }
 
 .navbar {
+    background-color: #14468c;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -51,7 +68,7 @@ header.sticky-top {
     align-items: center;
 }
 
-    .navbar-brand .logo-bg {
+.navbar-brand .logo-bg {
         width: 40px;
         height: 40px;
         background-color: #af111c;
@@ -61,7 +78,7 @@ header.sticky-top {
         align-items: center;
         color: white;
         font-size: 1.2rem;
-    }
+}
 
 .navbar-collapse {
     justify-content: space-between;
@@ -74,7 +91,12 @@ header.sticky-top {
 
 
 
+/*row*/
 
+
+.row {
+    
+}
 
 
 
@@ -174,17 +196,18 @@ header.sticky-top {
 .floating-kite {
     position: relative;
     border-radius: 10px;
-    background: rgba(130, 77, 00,0.4);
+    /*background: rgba(255,255,255,1);*/
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
     animation: cartoonFloat 10s infinite ease-in-out;
     opacity: 0.9;
-    z-index: -1; /* Ensure kites appear behind the content */
 }
 
 .floating-container {
     border-radius:2px;
     position: absolute;
-    width:100vw;
-    height: 100vh;
+    width:100%;
+    height: 92vh;
     overflow: hidden;
     background: rgba(255, 255, 255,0); /* Translucent background */
 }
