@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace wardalert.Pages.Admin
 {
-    public class ManagenoticeModel : PageModel
+    public class _ViewStartModel : PageModel
     {
         public void OnGet()
         {

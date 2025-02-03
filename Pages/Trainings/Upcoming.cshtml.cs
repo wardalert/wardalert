@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 
-namespace wardalert.Pages
+namespace wardalert.Pages.trainings
 {
     public class UpcomingModel : PageModel
     {
@@ -11,13 +11,13 @@ namespace wardalert.Pages
         public List<Train> Trainings { get; set; } = new List<Train>();
 
         [BindProperty]
-        public string Training { get; set; }
+        public string Training{ get; set; }
         [BindProperty]
         public string Name { get; set; }
         [BindProperty]
-        public string Address {  get; set; }
+        public string Address { get; set; }
         [BindProperty]
-        public string Phone {  get; set; }
+        public string Phone { get; set; }
         public void OnPost()
         {
             using var connection = new MySqlConnection(_connectionString);
@@ -30,7 +30,7 @@ namespace wardalert.Pages
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@Phone", Phone);
-            
+
 
             command.ExecuteNonQuery();
             connection.Close();
@@ -51,7 +51,7 @@ namespace wardalert.Pages
                 Trainings.Add(new Train
                 {
 
-                    Trainingtitle= reader.GetString("Trainingtitle"),
+                    Trainingtitle = reader.GetString("Trainingtitle"),
                     Trainingdescription = reader.GetString("Trainingdescription"),
                     Date = reader.GetString("Date"),
                     Time = reader.GetString("Time"),

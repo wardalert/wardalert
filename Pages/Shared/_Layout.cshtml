@@ -13,12 +13,14 @@
 </head>
 <body class="bg-slate-900 text-black">
 
-    <div class="floating-container" id="kite-container">
+ <!--
+ <div class="floating-container" id="kite-container">
     </div> 
+ --> 
 
 
-    <header class="sticky-top bg-slate-900-80">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
+    <header class="bg-slate-900-80">
+        <nav class=" fixed-top navbar w-100 navbar-expand-sm navbar-toggleable-sm navbar-dark">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
                     <div class="logo-bg d-flex align-items-center justify-content-center me-2">
@@ -41,18 +43,15 @@
                                 Trainings
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="Ongoing">Ongoing Trainings</a></li>
-                                <li><a class="dropdown-item" href="Upcoming">Upcoming Trainings</a></li>
-                                <li><a class="dropdown-item" href="Expired">Expired Trainings</a></li>
+                                <li><a class="dropdown-item" href="~/Trainings/Ongoing">Ongoing Trainings</a></li>
+                                <li><a class="dropdown-item" href="~/Trainings/Upcoming">Upcoming Trainings</a></li>
+                                <li><a class="dropdown-item" href="~/Trainings/Expired">Expired Trainings</a></li>
                             </ul>
                         </li>
                         @if (Context.Session.GetString("Login") == "true")
                         {
                             <li class="nav-item">
-                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Dashboard">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Userlist">User List</a>
+                                <a class="btn btn-outline-light ms-2" asp-area="" asp-page="/Admin/Dashboard">Dashboard</a>
                             </li>
                         }
                         else
