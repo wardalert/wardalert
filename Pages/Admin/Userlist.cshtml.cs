@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
-using static wardalert.Pages.UpcomingModel;
+using static wardalert.Pages.trainings.UpcomingModel;
 
 namespace wardalert.Pages.Admin
 {

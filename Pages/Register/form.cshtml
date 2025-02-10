@@ -5,25 +5,29 @@
 
 <h1>Register for the training form</h1>
 
-<form class="m-4">
-    <div class="mb-2">
+
+<form method="post" class="">
+    <div class="form-group">
+        <label for="training" class="form-label">Training</label>
+        <input type="text" id="training" asp-for="Training" required class="form-control" placeholder="" />
+    </div>
+    <div class="form-group">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" style="max-width:300px;" id="name" placeholder="Ram Bahadur" />
+        <input type="text" id="name" asp-for="Name" required class="form-control" placeholder="Ram Bahadur" />
     </div>
-
-    <div class="mb-2">
+    <div class="form-group">
         <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" style="max-width:300px;" id="address" placeholder="Palpa" />
+        <input type="text" asp-for="Address" class="form-control" id="address" placeholder="Chyasal Lalitpur" />
     </div>
 
-    <div class="mb-2">
+    <div class="form-group">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" style="max-width:300px;" id="email" placeholder="ram@gmail.com" />
+        <input type="email" asp-for="Email" class="form-control" id="email" placeholder="ram@gmail.com" />
     </div>
 
-    <div class="mb-2">
+    <div class="from-group">
         <label for="phone" class="form-label">Phone</label>
-        <input type="tel" class="form-control" style="max-width:300px;" id="phone" placeholder="9876543210" />
+        <input type="tel" asp-for="Phone" required class="form-control" id="phone" placeholder="9876543210" />
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
 </form>

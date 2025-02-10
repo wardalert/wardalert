@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace wardalert.Pages.Training
+namespace wardalert.Pages.Admin
 {
-    public class ExpiredModel : PageModel
+    public class _ViewStartModel : PageModel
     {
         public void OnGet()
         {

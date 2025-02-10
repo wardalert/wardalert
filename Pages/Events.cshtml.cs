@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace wardalert.Pages.Admin
+namespace wardalert.Pages
 {
-    public class ManagenoticeModel : PageModel
+    public class EventsModel : PageModel
     {
         public void OnGet()
         {

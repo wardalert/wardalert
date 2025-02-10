@@ -1,49 +1,48 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "index";
+    ViewData["Title"] = "Home";
 }
 
-<main class="main-content">
+<div class="homepagecontainer container-fluid">
 
-    <div class="welcome-image-container">
-         <img src="./images/12.png" class="haku"> 
-        <img src="./images/DYA.png" alt="Welcome to Lalitpur" class="welcome-image">
-        <div class="welcome-text">WELCOME TO LALITPUR</div>
+    <div class="">
+
+            <div class="row justify-content-center text-center">
+           <div class="col-md-8 mt-5">
+                <h1 class="display-4 fw-bold mb-4 text-white" >
+                    Welcome to Ward 17
+                    <span class="d-block" style="color:#af111c">Lalitpur</span>
+                </h1>
+                <p class="text-white fw-normal fs-5 mb-5">
+                    Discover local updates, participate in community trainings, and stay connected with your ward.
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            @{
+                var cards = new[]
+             {
+            new { Title = "Ongoing Trainings", Description = "View all active training sessions and workshops currently running in your ward.", Color = "bg-gradient-red" },
+            new { Title = "Upcoming Events", Description = "Stay updated with future training programs and community events.", Color = "bg-gradient-slate" },
+            new { Title = "Community Updates", Description = "Get the latest news and announcements from your ward office.", Color = "bg-gradient-dark" }
+            };
+            }
+
+         @foreach (var card in cards)
+            {
+                <div class="col-md-4 ">
+                    <div class="card h-100 @card.Color text-white">
+                        <div class="card-body">
+                            <h3 class="card-title">@card.Title</h3>
+                            <p class="card-text">@card.Description</p>
+                            <a href="#" class="btn btn-link text-white">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+   
     </div>
-</main>
-    </div>
-<div class="text">
-
-    <h3 class="info-heading">Description</h3>
-    Lalitpur Ward No. 17 (Lukhunsi)
-
-
-
-    Ward No. 17 of Lalitpur Sub-Metropolitan City.<p>
-        One of Patan´s 22 Wards.
-        Former Ward No. 17 (Lukhunsi)
-    </p>
-    <br>
-
-    <p>
-        <h3>Introduction to the Ward:</h3>
-        <br>
-        <h4>1. Historical Background</h4>
-        Lalitpur Metropolitan City Ward No. 17 is a historic town. This ward is home to various languages, ethnicities, cultures, and communities. According to the 2068 census (2011 AD), the total population of this ward is 10,644, comprising 5,093 females and 5,551 males. The total number of households is 2,678, and the population density is 17,740 per square kilometer. The total area of the ward is 0.60 square kilometers.
-        <br>
-        <br>
-        <h4>2. Geographical Location and Boundaries</h4>
-
-        East: Karmanasa River and Mahalaxmi Municipality Ward No. 1.<br>
-        West: Ilache, Lukhusi, Kanibahal, Sinchahiti, Dalot Workshop, and Ward No. 6.<br>
-        North: Sundhara, Ilache, Haktol, Tyagal, Gwarko, and Ward No. 7.<br>
-        South: All Nepal Football Association, Bafal, and Ward No. 15.<br>
-<br />
-<br />
-
-
 </div>
-    </div>
-
-

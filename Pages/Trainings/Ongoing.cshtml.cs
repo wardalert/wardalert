@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace wardalert.Pages
+namespace wardalert.Pages.trainings
 {
-    public class NoticeModel : PageModel
+    public class OngoingModel : PageModel
     {
         public void OnGet()
         {
