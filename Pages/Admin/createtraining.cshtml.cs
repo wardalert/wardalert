@@ -12,11 +12,11 @@ namespace wardalert.Pages.Admin
         public int TrainingId { get; set; }
 
         [BindProperty]
-        public string Title { get; set; }
+        public required string Title { get; set; }
         [BindProperty]
-        public string Description { get; set; }
+        public required string Description { get; set; }
         [BindProperty]
-        public string Status { get; set; }
+        public required string Status { get; set; }
         [BindProperty]
         public DateTime Time { get; set; }
         [BindProperty]

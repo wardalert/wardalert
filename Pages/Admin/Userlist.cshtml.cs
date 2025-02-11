@@ -7,7 +7,7 @@ namespace wardalert.Pages.Admin
 {
     public class UserlistModel : PageModel
     {
-        private readonly string _connectionString = "Server=185.176.40.25;Database=4583979_wardalert;User=4583979_wardalert;Password=qTuCSS#qcS9r4P2;";
+        private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
         public List<Userlist> Userlists { get; set; } = new List<Userlist>();
 
         public IActionResult OnGet()
@@ -46,9 +46,9 @@ namespace wardalert.Pages.Admin
         public class Userlist
         {
             public int id { get; set; }
-            public string Name { get; set; }
-            public string Address{ get; set; }
-            public string Phone{ get; set; }
+            public required string Name { get; set; }
+            public string Address { get; set; }
+            public string Phone { get; set; }
 
             public string Gender { get; set; }
 

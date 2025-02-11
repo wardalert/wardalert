@@ -11,13 +11,13 @@ namespace wardalert.Pages.trainings
         public List<Train> Trainings { get; set; } = new List<Train>();
 
         [BindProperty]
-        public string Training{ get; set; }
+        public required string Training { get; set; }
         [BindProperty]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         [BindProperty]
         public string Address { get; set; }
         [BindProperty]
-        public string Phone { get; set; }
+        public required string Phone { get; set; }
         public void OnPost()
         {
             using var connection = new MySqlConnection(_connectionString);
