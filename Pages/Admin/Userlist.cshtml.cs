@@ -7,7 +7,7 @@ namespace wardalert.Pages.Admin
 {
     public class UserlistModel : PageModel
     {
-        private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
+        private readonly string _connectionString = "Server=185.176.40.25;Database=4583979_wardalert;User=4583979_wardalert;Password=qTuCSS#qcS9r4P2;";
         public List<Userlist> Userlists { get; set; } = new List<Userlist>();
 
         public IActionResult OnGet()
@@ -23,7 +23,7 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT id,Training, Name,Address,Phone FROM Userlist";
+            string query = "SELECT id, Name,Address,Phone, Gender FROM Userlist";
 
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
@@ -33,10 +33,11 @@ namespace wardalert.Pages.Admin
                 Userlists.Add(new Userlist
                 {
 
-                    Training= reader.GetString("Training"),
                     Name = reader.GetString("Name"),
                     Address = reader.GetString("Address"),
                     Phone = reader.GetString("Phone"),
+                    Gender = reader.GetString("Gender"),
+
                 });
             }
             connection.Close();
@@ -44,10 +45,13 @@ namespace wardalert.Pages.Admin
         }
         public class Userlist
         {
-            public string Training { get; set; }
+            public int id { get; set; }
             public string Name { get; set; }
             public string Address{ get; set; }
             public string Phone{ get; set; }
+
+            public string Gender { get; set; }
+
         }
 
     }
