@@ -70,31 +70,27 @@
     {
         <form method="post" class="describe">
             <p>
-                <h2 class="title">@train.Trainingtitle</h2>
+                <h2 class="title">@train.Title</h2>
             </p>
             <br />
 
-            <p class="description">
-
-                @train.Trainingdescription
-
-            </p>
-
-            <p>
-                <h4 class="date">Date:@train.Date</h4>
-            </p>
+            <p class="description">@train.Description</p>
 
             <p>
                 <h4 class="time">Time:@train.Time</h4>
+            </p>
+
+            <p>
+                <h4 class="time">Start Date :@train.StartDate</h4>
+            </p>
+            <p>
+                <h4 class="time">End Date :@train.EndDate</h4>
             </p>
             <br />
             <div class="form-group">
                 <label>Please Fill The Form To Register:</label>
 
-                <div class="form-group">
-                    <label >Training</label>
-                    <input type="text" value="@train.Trainingtitle" asp-for="Training" required />
-                </div>
+                
                 <label >Name</label>
                 <input type="text"  asp-for="Name" required />
             </div>
@@ -108,7 +104,7 @@
                 <label>Phone</label>
                 <input type="text" asp-for="Phone" required />
             </div>
-
+            
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

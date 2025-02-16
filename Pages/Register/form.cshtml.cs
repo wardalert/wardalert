@@ -9,7 +9,7 @@ namespace wardalert.Pages.Register
     {
         private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
         [BindProperty]
-        public string Training { get; set; }
+        public int trainingId { get; set; }
         [BindProperty]
         public string Name { get; set; }
         [BindProperty]
@@ -28,10 +28,10 @@ namespace wardalert.Pages.Register
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "INSERT INTO Userlist (Training, Name, Address, Email, Phone) VALUES (@Training, @Name, @Address, @Email, @Phone)";
+            string query = "INSERT INTO Userlist (trainingId, Name, Address, Email, Phone) VALUES (@trainingId, @Name, @Address, @Email, @Phone)";
 
             using var command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Training", Training);
+            command.Parameters.AddWithValue("@Training", trainingId);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@Email", Email);
