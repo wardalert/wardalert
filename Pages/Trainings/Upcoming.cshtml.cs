@@ -41,7 +41,7 @@ namespace wardalert.Pages.trainings
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT id,Trainingtitle, Trainingdescription,Date,Time FROM training";
+            string query = "SELECT Title,Description,Time, StartDate,EndDate FROM training";
 
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
@@ -51,10 +51,11 @@ namespace wardalert.Pages.trainings
                 Trainings.Add(new Train
                 {
 
-                    Trainingtitle = reader.GetString("Trainingtitle"),
-                    Trainingdescription = reader.GetString("Trainingdescription"),
-                    Date = reader.GetString("Date"),
+                    Title = reader.GetString("Title"),
+                    Description = reader.GetString("Description"),
                     Time = reader.GetString("Time"),
+                    StartDate = reader.GetString("StartDate"),
+                    EndDate = reader.GetString("EndDate"),
                 });
             }
             connection.Close();
@@ -62,10 +63,11 @@ namespace wardalert.Pages.trainings
 
         public class Train
         {
-            public string Trainingtitle { get; set; }
-            public string Trainingdescription { get; set; }
-            public string Date { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
             public string Time { get; set; }
+            public string StartDate { get; set; }
+            public string EndDate { get; set; }
 
         }
     }
