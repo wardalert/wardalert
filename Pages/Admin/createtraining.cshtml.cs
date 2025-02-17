@@ -30,11 +30,11 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "INSERT INTO training (TrainingId,Title,Description,Status,Time,StartDate,EndDate) VALUES (@TrainingId,@Title, @Description,@Status,@Time,@StartDate,@EndDate)";
+            string query = "INSERT INTO training (Title,Description,Status,Time,StartDate,EndDate) VALUES (@Title, @Description,@Status,@Time,@StartDate,@EndDate)";
 
             using var command = new MySqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@TrainingId", TrainingId);
+           /* command.Parameters.AddWithValue("@TrainingId", TrainingId);*/
             command.Parameters.AddWithValue("@Title", Title);
             command.Parameters.AddWithValue("@Description", Description);
             command.Parameters.AddWithValue("@Status", Status);

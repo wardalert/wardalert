@@ -2,72 +2,48 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace wardalert.Pages.trainings
 {
     public class UpcomingModel : PageModel
     {
-        private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
-        public List<Train> Trainings { get; set; } = new List<Train>();
-
-        [BindProperty]
-        public required string Training { get; set; }
-        [BindProperty]
-        public required string Name { get; set; }
-        [BindProperty]
-        public string Address { get; set; }
-        [BindProperty]
-        public required string Phone { get; set; }
-        public void OnPost()
-        {
-            using var connection = new MySqlConnection(_connectionString);
-            connection.Open();
-
-            string query = "INSERT INTO Userlist (Training, Name, Address,Phone) VALUES (@Training,@Name, @Address,@Phone)";
-
-            using var command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Training", Training);
-            command.Parameters.AddWithValue("@Name", Name);
-            command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Phone", Phone);
-
-
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
+        private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;AllowZeroDateTime=True;ConvertZeroDateTime=True;";
+        public List<TrainingCard> Trainings { get; set; } = new List<TrainingCard>();
 
         public void OnGet()
         {
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT Title,Description,Time, StartDate,EndDate FROM training";
+            string query = "SELECT TrainingId,Title ,Time, StartDate,EndDate ,Description FROM training";
 
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                Trainings.Add(new Train
+                Trainings.Add(new TrainingCard
                 {
-
+                    TrainingId = reader.GetInt32("TrainingId"),
                     Title = reader.GetString("Title"),
+                    Time = reader.IsDBNull("Time") ? null : reader.GetDateTime("Time"),
+                    StartDate = reader.IsDBNull("StartDate") ? null : reader.GetDateTime("StartDate"),
+                    EndDate = reader.IsDBNull("EndDate") ? null : reader.GetDateTime("EndDate"),
                     Description = reader.GetString("Description"),
-                    Time = reader.GetString("Time"),
-                    StartDate = reader.GetString("StartDate"),
-                    EndDate = reader.GetString("EndDate"),
                 });
             }
             connection.Close();
         }
 
-        public class Train
+        public class TrainingCard
         {
+            public int TrainingId { get; set; }
             public string Title { get; set; }
+            public DateTime? Time { get; set; }
+            public DateTime? StartDate { get; set; }
+            public DateTime? EndDate { get; set; }
             public string Description { get; set; }
-            public string Time { get; set; }
-            public string StartDate { get; set; }
-            public string EndDate { get; set; }
 
         }
     }
