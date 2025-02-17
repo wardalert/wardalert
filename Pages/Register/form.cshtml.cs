@@ -15,30 +15,33 @@ namespace wardalert.Pages.Register
         [BindProperty]
         public string Address { get; set; }
         [BindProperty]
-        public string Email { get; set; }
-        [BindProperty]
         public string Phone { get; set; }
-        public void OnGet()
+        [BindProperty]
+        public string Gender { get; set; }
+        public void OnGet(int trainingId)
         {
+            this.trainingId = trainingId;
+            
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             // Handle form submission
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "INSERT INTO Userlist (trainingId, Name, Address, Email, Phone) VALUES (@trainingId, @Name, @Address, @Email, @Phone)";
+            string query = "INSERT INTO Userlist (trainingId, name, address, phone, gender ) VALUES (@trainingId, @Name, @Address, @Phone , @Gender)";
 
             using var command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Training", trainingId);
+            command.Parameters.AddWithValue("@trainingId", trainingId);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Address", Address);
-            command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@Gender", Gender);
             command.ExecuteNonQuery();
             connection.Close();
 
+            return RedirectToPage("/Trainings/Upcoming");
 
         }
     }

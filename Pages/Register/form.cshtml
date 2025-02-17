@@ -7,10 +7,7 @@
 
 
 <form method="post" class="">
-    <div class="form-group">
-        <label for="trainingId" class="form-label">trainingId</label>
-        <input type="text" id="training" asp-for="trainingId" required class="form-control" placeholder="" />
-    </div>
+    
     <div class="form-group">
         <label for="name" class="form-label">Name</label>
         <input type="text" id="name" asp-for="Name" required class="form-control" placeholder="Ram Bahadur" />
@@ -20,14 +17,15 @@
         <input type="text" asp-for="Address" class="form-control" id="address" placeholder="Chyasal Lalitpur" />
     </div>
 
-    <div class="form-group">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" asp-for="Email" class="form-control" id="email" placeholder="ram@gmail.com" />
-    </div>
-
     <div class="from-group">
         <label for="phone" class="form-label">Phone</label>
         <input type="tel" asp-for="Phone" required class="form-control" id="phone" placeholder="9876543210" />
     </div>
+    
+    <div class="form-group">
+        <label for="gender" class="form-label">Gender</label>
+        <input type="text" asp-for="Gender" class="form-control" id="gender" placeholder="" />
+    </div>
+
     <button type="submit" class="btn btn-primary">Register</button>
 </form>
