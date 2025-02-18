@@ -2,14 +2,22 @@
 @model wardalert.Pages.Admin.LoginModel
 @{
 }
-<div class="loginform">
 
+ @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+<div class="loginform">
+   
     <form method="post" class="ff">
         <div class="form-group">
             <label for="Email">Email</label>
-            <input type="email" id="Email" name="Email" class="form-control"  asp-for="Email" required/>
+            <input type="email" id="Email" name="Email" class="form-control" asp-for="Email" required />
         </div>
-            
+
         <div class="form-group">
             <label for="Password">Password</label>
             <input type="password" id="Password" name="Password" class="form-control" asp-for="Password" required />
@@ -17,7 +25,4 @@
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-
-
-
 </div>

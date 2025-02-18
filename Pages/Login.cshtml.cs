@@ -13,7 +13,9 @@ namespace wardalert.Pages.Admin
         public string Password { get; set; }
 
         public bool IsLoggedIn { get; set; } = false;
-//        public string ErrorMessage;
+        //        public string ErrorMessage;
+        public string ErrorMessage { get; set; } = "";
+
         public IActionResult OnPost()
         {
             if (Email == "kri@gmail.com" && Password == "krisha123")
@@ -23,8 +25,10 @@ namespace wardalert.Pages.Admin
             }
 
             HttpContext.Session.SetString("Login", "false"); // Set session value
+            ErrorMessage = "Invalid email or password!"; // Set error message
             return Page();
         }
+
         public IActionResult OnPostLogout()
         {
             // Clear session data when logging out
