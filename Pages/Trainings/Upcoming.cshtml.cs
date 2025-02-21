@@ -16,7 +16,7 @@ namespace wardalert.Pages.trainings
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT TrainingId,Title ,Time, StartDate,EndDate ,Description FROM training";
+            string query = "SELECT TrainingId,Title ,Time, StartDate,EndDate ,Description FROM training where Status ='Upcoming'";
 
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();

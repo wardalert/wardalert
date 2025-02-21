@@ -40,7 +40,7 @@
         <input type="date" asp-for="EndDate" required class="form-control" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Upload</button>
+    <button type="submit" class="btn btn-primary"> @(Model.IsEdit ? "Update Training" : "Create Training")</button>
 </form>
 
 

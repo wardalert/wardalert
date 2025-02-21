@@ -1,0 +1,147 @@
+﻿/* Base styles */
+body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+/* Remove underline from action buttons */
+.btn-action {
+    text-decoration: none; /* Removes underline */
+}
+
+/* Card styles */
+.admin-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Header section */
+.title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Search box */
+.search-box {
+    position: relative;
+    max-width: 300px;
+}
+
+    .search-box input {
+        padding-left: 2.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e5e7eb;
+    }
+
+    .search-box i {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+    }
+
+/* Table styles */
+.table {
+    margin-bottom: 0;
+}
+
+    .table th {
+        background-color: #f9fafb;
+        color: #4b5563;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        padding: 1rem;
+    }
+
+    .table td {
+        padding: 1rem;
+        vertical-align: middle;
+        color: #374151;
+    }
+
+
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-action {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-view {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.btn-edit {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.btn-delete {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Empty state */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #6b7280;
+}
+
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .empty-state h5 {
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+        margin-bottom: 0;
+    }
+
+
+/*Changes Status enum colors*/
+/* Status badge */
+.status-badge {
+    padding: 5px 10px;
+    background-color: #e2e9f7;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Status colors */
+.status-badge.Upcoming {
+    background-color: #ff9800; /* Orange */
+    color: white;
+}
+
+.status-badge.Ongoing {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+.status-badge.Expired {
+    background-color: #f44336; /* Red */
+    color: white;
+}
