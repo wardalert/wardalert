@@ -43,6 +43,8 @@ namespace wardalert.Pages.Admin
                 updateCommand.Parameters.AddWithValue("@StartDate", StartDate);
                 updateCommand.Parameters.AddWithValue("@EndDate", EndDate);
                 updateCommand.ExecuteNonQuery();
+
+                Response.Redirect("/Admin/TrainingList");
             }
             else
             {
