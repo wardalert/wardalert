@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using wardalert.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDistributedMemoryCache(); // Required for session
 builder.Services.AddSession();               // Add session services
 builder.Services.AddRazorPages();            // Add Razor Pages services
+builder.Services.AddScoped<TrainingService>();
+
 
 var app = builder.Build();
 
