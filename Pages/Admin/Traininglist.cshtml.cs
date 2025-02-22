@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using wardalert.Services;
 
 
 namespace wardalert.Pages.Admin
@@ -10,6 +11,12 @@ namespace wardalert.Pages.Admin
     public class TrainingModel : PageModel
     {
         private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
+        private readonly TrainingService _trainingService;
+
+        public TrainingModel(TrainingService trainingService)
+        {
+            _trainingService = trainingService;
+        }
 
         public List<TrainingList> TrainingLists { get; set; } = new List<TrainingList>();
 
@@ -20,6 +27,7 @@ namespace wardalert.Pages.Admin
             {
                 return RedirectToPage("/Login");
             }
+            _trainingService.UpdateTrainingStatus();
 
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
@@ -45,6 +53,9 @@ namespace wardalert.Pages.Admin
             connection.Close();
             return Page();
         }
+
+
+
     }
 
     public class TrainingList
@@ -55,6 +66,8 @@ namespace wardalert.Pages.Admin
         public DateTime EndDate { get; set; }
         public string Status { get; set; } // Ensure this is fetched and used
     }
+
+
 
 
 

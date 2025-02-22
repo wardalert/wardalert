@@ -1,12 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
+using wardalert.Services;
 
 namespace wardalert.Pages.Admin
 {
     public class createtrainingModel : PageModel
     {
         private readonly string _connectionString = "Server=localhost;Database=project;User=root;Password=;";
+        private readonly TrainingService _trainingService;
+
+        public createtrainingModel(TrainingService trainingService)
+        {
+            _trainingService = trainingService;
+        }
         public bool IsEdit { get; set; } = false;
 
         [BindProperty]
@@ -31,6 +38,8 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
+            Status = _trainingService.ComputeTrainingStatus(StartDate, EndDate);
+
             if (TrainingId > 0) //update/edit existing training
             {
                 string updateQuery = "UPDATE training SET TrainingId=@TrainingId, Title=@Title, Description=@Description, Status=@Status, Time=@Time, StartDate=@StartDate, EndDate=@EndDate WHERE TrainingId=@TrainingId";
@@ -44,7 +53,6 @@ namespace wardalert.Pages.Admin
                 updateCommand.Parameters.AddWithValue("@EndDate", EndDate);
                 updateCommand.ExecuteNonQuery();
 
-                Response.Redirect("/Admin/TrainingList");
             }
             else
             {
@@ -66,8 +74,9 @@ namespace wardalert.Pages.Admin
             command.ExecuteNonQuery();
             connection.Close();
 
+            }
+            _trainingService.UpdateTrainingStatus();
             Response.Redirect("/Admin/TrainingList");
-            }   
         }
 
 
@@ -111,6 +120,7 @@ namespace wardalert.Pages.Admin
 
             return Page();
         }
+
 
     }
 }
