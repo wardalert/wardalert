@@ -33,7 +33,7 @@ namespace wardalert.Pages.Admin
 
             if (TrainingId > 0) //update/edit existing training
             {
-                string updateQuery = "UPDATE training SET Title=@Title, Description=@Description, Status=@Status, Time=@Time, StartDate=@StartDate, EndDate=@EndDate WHERE TrainingId=@TrainingId";
+                string updateQuery = "UPDATE training SET TrainingId=@TrainingId, Title=@Title, Description=@Description, Status=@Status, Time=@Time, StartDate=@StartDate, EndDate=@EndDate WHERE TrainingId=@TrainingId";
                 using var updateCommand = new MySqlCommand(updateQuery, connection);
                 updateCommand.Parameters.AddWithValue("@TrainingId", TrainingId);
                 updateCommand.Parameters.AddWithValue("@Title", Title);
