@@ -31,6 +31,9 @@ namespace wardalert.Pages.Admin
         public DateTime StartDate { get; set; }
         [BindProperty]
         public DateTime EndDate { get; set; }
+        [BindProperty]
+        public int Capacity { get; set; }
+
 
 
         public void OnPost()
@@ -42,7 +45,7 @@ namespace wardalert.Pages.Admin
 
             if (TrainingId > 0) //update/edit existing training
             {
-                string updateQuery = "UPDATE training SET TrainingId=@TrainingId, Title=@Title, Description=@Description, Status=@Status, Time=@Time, StartDate=@StartDate, EndDate=@EndDate WHERE TrainingId=@TrainingId";
+                string updateQuery = "UPDATE training SET TrainingId=@TrainingId, Title=@Title, Description=@Description, Status=@Status, Time=@Time, StartDate=@StartDate, EndDate=@EndDate, Capacity=@Capacity WHERE TrainingId=@TrainingId";
                 using var updateCommand = new MySqlCommand(updateQuery, connection);
                 updateCommand.Parameters.AddWithValue("@TrainingId", TrainingId);
                 updateCommand.Parameters.AddWithValue("@Title", Title);
@@ -51,13 +54,15 @@ namespace wardalert.Pages.Admin
                 updateCommand.Parameters.AddWithValue("@Time", Time);
                 updateCommand.Parameters.AddWithValue("@StartDate", StartDate);
                 updateCommand.Parameters.AddWithValue("@EndDate", EndDate);
+                updateCommand.Parameters.AddWithValue("@Capacity", Capacity);
+
                 updateCommand.ExecuteNonQuery();
 
             }
-            else
+            else 
             {
 
-            string query = "INSERT INTO training (Title,Description,Status,Time,StartDate,EndDate) VALUES (@Title, @Description,@Status,@Time,@StartDate,@EndDate)";
+            string query = "INSERT INTO training (Title,Description,Status,Time,StartDate,EndDate, Capacity) VALUES (@Title, @Description,@Status,@Time,@StartDate,@EndDate,@Capacity)";
 
             using var command = new MySqlCommand(query, connection);
 
@@ -68,10 +73,9 @@ namespace wardalert.Pages.Admin
             command.Parameters.AddWithValue("@Time", Time);
             command.Parameters.AddWithValue("@StartDate", StartDate);
             command.Parameters.AddWithValue("@EndDate", EndDate);
+                command.Parameters.AddWithValue("@Capacity", Capacity);
 
-
-
-            command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             connection.Close();
 
             }

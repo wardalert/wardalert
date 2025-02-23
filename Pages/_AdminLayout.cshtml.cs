@@ -7,6 +7,9 @@ namespace wardalert.Pages.Shared
     {
         public void OnGet()
         {
+
         }
+
+        
     }
 }

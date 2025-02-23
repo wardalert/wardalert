@@ -1,4 +1,7 @@
-﻿@{
+﻿
+
+
+@{
     Layout = ViewData["BaseLayout"] as string ?? "_Layout";
 }
 
@@ -33,13 +36,16 @@
         .sidebar a:hover {
             background-color: #495057;
         }
-
+       
         .content {
             margin-top: 60px;
             margin-left: 250px;
             padding: 20px;
             width: 100%;
         }
+
+
+
     </style>
 </head>
 <body>
@@ -49,6 +55,9 @@
         <a href="~/Admin/traininglist">Training List</a>
         <a href="~/Admin/createtraining">Create New Training</a>
         <a href="#">Manage Events</a>
+        <a href="javascript:document.getElementById('logoutForm').submit();">Logout</a>
+        <form id="logoutForm" method="post" asp-page="/Login" asp-page-handler="Logout" style="display: none;"></form>
+
     </div>
 
     <div class="content">

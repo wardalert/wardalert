@@ -32,7 +32,7 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT TrainingId, Title, StartDate, EndDate, Status  FROM training";
+            string query = "SELECT TrainingId, Title, StartDate, EndDate, Status, Capacity  FROM training";
 
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
@@ -46,7 +46,8 @@ namespace wardalert.Pages.Admin
                     Title = reader.GetString("Title"),
                     StartDate = reader.GetDateTime("StartDate"),
                     EndDate = reader.GetDateTime("EndDate"),
-                    Status = reader.GetString("Status") // Fetch status directly from DB
+                    Status = reader.GetString("Status"),// Fetch status directly from DB
+                    Capacity=reader.GetInt32("Capacity")
                 });
             }
 
@@ -64,7 +65,9 @@ namespace wardalert.Pages.Admin
         public required string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Status { get; set; } // Ensure this is fetched and used
+        public string Status { get; set; }
+        
+        public int Capacity { get; set; }// Ensure this is fetched and used
     }
 
 
