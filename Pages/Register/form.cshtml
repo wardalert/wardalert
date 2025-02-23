@@ -5,26 +5,45 @@
 
 <h1>Register for the training form</h1>
 
+<!-- Error message display -->
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Error:</strong>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
 
 <form method="post" class="">
-    
+
     <div class="form-group">
         <label for="name" class="form-label">Name</label>
         <input type="text" id="name" asp-for="Name" required class="form-control" placeholder="Ram Bahadur" />
     </div>
+
     <div class="form-group">
         <label for="address" class="form-label">Address</label>
         <input type="text" asp-for="Address" class="form-control" id="address" placeholder="Chyasal Lalitpur" />
     </div>
 
-    <div class="from-group">
+    <div class="form-group">
         <label for="phone" class="form-label">Phone</label>
         <input type="tel" asp-for="Phone" required class="form-control" id="phone" placeholder="9876543210" />
     </div>
-    
+
     <div class="form-group">
         <label for="gender" class="form-label">Gender</label>
         <input type="text" asp-for="Gender" class="form-control" id="gender" placeholder="" />
+    </div>
+
+    <div class="form-group">
+        <label for="file" class="form-label">Upload File</label>
+        <input type="file" id="file" class="form-control" />
     </div>
 
     <button type="submit" class="btn btn-primary">Register</button>
