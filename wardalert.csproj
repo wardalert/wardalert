@@ -33,4 +33,8 @@
     <UpToDateCheckInput Remove="Pages\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

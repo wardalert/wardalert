@@ -1,6 +1,8 @@
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
+
 
 namespace wardalert.Pages.Register
 {
@@ -18,6 +20,10 @@ namespace wardalert.Pages.Register
         public string Phone { get; set; }
         [BindProperty]
         public string Gender { get; set; }
+        [BindProperty]
+        public IFormFile UploadedFile { get; set; } // File property
+
+
 
         public void OnGet(int trainingId)
         {
@@ -56,14 +62,47 @@ namespace wardalert.Pages.Register
                 return Page(); // Return the form with an error message
             }
 
+            // **File Upload Handling**
+            string filePath = null;
+            if (UploadedFile != null && UploadedFile.Length > 0)
+            {
+                try
+                {
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    // Generate a unique filename to avoid conflicts
+                    string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(UploadedFile.FileName);
+                    string fileSavePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(fileSavePath, FileMode.Create))
+                    {
+                        UploadedFile.CopyTo(fileStream);
+                    }
+
+                    // Save relative path instead of absolute path
+                    filePath = "/uploads/" + uniqueFileName;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("FileUploadError", "File upload failed: " + ex.Message);
+                    return Page();
+                }
+            }
+
+
             // Insert the new user if training is not full
-            string query = "INSERT INTO Userlist (trainingId, name, address, phone, gender) VALUES (@trainingId, @Name, @Address, @Phone, @Gender)";
+            string query = "INSERT INTO Userlist (trainingId, name, address, phone, gender,imagePath) VALUES (@trainingId, @Name, @Address, @Phone, @Gender,@ImagePath)";
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@trainingId", trainingId);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@Phone", Phone);
             command.Parameters.AddWithValue("@Gender", Gender);
+            command.Parameters.AddWithValue("@ImagePath", filePath ?? (object)DBNull.Value);
             command.ExecuteNonQuery();
 
             connection.Close();

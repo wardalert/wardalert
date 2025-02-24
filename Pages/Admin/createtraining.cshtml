@@ -4,48 +4,50 @@
     Layout = "_AdminLayout";
 }
 
-<form method="post" class="ff">
+<div class="form-container">
+    <h3>Training Details</h3>
+    <form method="post" class="form-box">
 
-    <input type="hidden" asp-for="TrainingId" />
+        <input type="hidden" asp-for="TrainingId" />
 
-    <div class="form-group">
-        <label for="Title">Training Title</label>
-        <input type="text" asp-for="Title" required class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label for="Description">Description</label>
-        <input type="text" asp-for="Description" required class="form-control" />
-    </div>
-    @if (Model.TrainingId > 0)
-    {
         <div class="form-group">
-            <label for="Status">Status</label>
-            <input type="text" asp-for="Status" required class="form-control" />
+            <label for="Title">Training Title</label>
+            <input type="text" asp-for="Title" required class="form-control" />
         </div>
-    }
 
-    <div class="form-group">
-        <label for="Time">Time</label>
-        <input type="datetime-local" asp-for="Time" required class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" asp-for="Description" required class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label for="StartDate">Start Date</label>
-        <input type="date" asp-for="StartDate" required class="form-control" />
-    </div>
+        @if (Model.TrainingId > 0)
+        {
+            <div class="form-group">
+                <label for="Status">Status</label>
+                <input type="text" asp-for="Status" required class="form-control" />
+            </div>
+        }
 
-    <div class="form-group">
-        <label for="EndDate">End Date</label>
-        <input type="date" asp-for="EndDate" required class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="Time">Time</label>
+            <input type="datetime-local" asp-for="Time" required class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label for="Capacity">Capacity</label>
-        <input type="text" asp-for="Capacity" required class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="StartDate">Start Date</label>
+            <input type="date" asp-for="StartDate" required class="form-control" />
+        </div>
 
-    <button type="submit" class="btn btn-primary"> @(Model.IsEdit ? "Update Training" : "Create Training")</button>
-</form>
+        <div class="form-group">
+            <label for="EndDate">End Date</label>
+            <input type="date" asp-for="EndDate" required class="form-control" />
+        </div>
 
+        <div class="form-group">
+            <label for="Capacity">Capacity</label>
+            <input type="text" asp-for="Capacity" required class="form-control" />
+        </div>
 
+        <button type="submit" class="btn btn-primary"> @(Model.IsEdit ? "Update Training" : "Create Training")</button>
+    </form>
+</div>
