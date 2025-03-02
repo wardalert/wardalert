@@ -23,26 +23,27 @@
         <div class="row mt-5">
             @{
                 var cards = new[]
-             {
-            new { Title = "Ongoing Trainings", Description = "View all active training sessions and workshops currently running in your ward.", Color = "bg-gradient-red" },
-            new { Title = "Upcoming Events", Description = "Stay updated with future training programs and community events.", Color = "bg-gradient-slate" },
-            new { Title = "Community Updates", Description = "Get the latest news and announcements from your ward office.", Color = "bg-gradient-dark" }
+                {
+            new { Title = "Ongoing Trainings", Description = "View all active training sessions and workshops currently running in your ward.", Color = "bg-gradient-red", Url = "https://localhost:7214/Trainings/Ongoing" },
+            new { Title = "Upcoming Training", Description = "Stay updated with future training programs and community events.", Color = "bg-gradient-slate", Url = "https://localhost:7214/Trainings/Upcoming" },
+            new { Title = "Community Updates", Description = "Get the latest news and announcements from your ward office.", Color = "bg-gradient-dark", Url = "https://lalitpurmun.gov.np/" }
             };
             }
 
-         @foreach (var card in cards)
+            @foreach (var card in cards)
             {
-                <div class="col-md-4 ">
+                <div class="col-md-4">
                     <div class="card h-100 @card.Color text-white">
                         <div class="card-body">
                             <h3 class="card-title">@card.Title</h3>
                             <p class="card-text">@card.Description</p>
-                            <a href="#" class="btn btn-link text-white">Learn More →</a>
+                            <a href="@card.Url" class="btn btn-link text-white" target="_blank">Learn More →</a>
                         </div>
                     </div>
                 </div>
             }
         </div>
+
    
     </div>
 </div>
