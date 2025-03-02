@@ -3,7 +3,6 @@
 @{
     Layout = "_AdminLayout";
 }
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,10 +44,10 @@
                                 <td>@user.Email</td>
                                 <td>@user.Gender</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btnCheckUser"
-                                            data-userid="@user.id"
-                                            data-image1="@user.UploadedFile1"
-                                            data-image2="@user.UploadedFile2">
+                                    <input type="hidden" class="hiddenImage1" value="@user.UploadedFile1" />
+                                    <input type="hidden" class="hiddenImage2" value="@user.UploadedFile2" />
+
+                                    <button type="button" class="btn btn-primary btnCheckUser" data-userid="@user.id">
                                         Check User
                                     </button>
                                 </td>
@@ -66,6 +65,7 @@
         </div>
     </div>
 
+
     <!-- User Verification Modal -->
     <div class="modal fade" id="userCheckModal" tabindex="-1" aria-labelledby="userCheckModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -77,7 +77,7 @@
                 <div class="modal-body text-center">
                     <div class="row">
                         <div class="col-md-6">
-                            <img id="modalImage1" class="img-fluid rounded border" alt="User Image 1">
+                            <img src="" id="modalImage1" class="img-fluid rounded border" alt="User Image 1">
                         </div>
                         <div class="col-md-6">
                             <img id="modalImage2" class="img-fluid rounded border" alt="User Image 2">
@@ -100,52 +100,25 @@
             let selectedUserId;
 
             $(".btnCheckUser").click(function () {
+                debugger
+                let row = $(this).closest("tr");  // Find the closest row
                 selectedUserId = $(this).data("userid");
-                let image1 = $(this).data("image1");
-                let image2 = $(this).data("image2");
+                let image1 = row.find(".hiddenImage1").val();
+                let image2 = row.find(".hiddenImage2").val();
+
+                console.log("Selected User ID:", selectedUserId);
+                console.log("Image 1:", image1);
+                console.log("Image 2:", image2);
 
                 // Set images in modal
-                $("#modalImage1").attr("src", image1);
-                $("#modalImage2").attr("src", image2);
+                $("#modalImage1").attr("src", image1 || "/default-image.jpg");
+                $("#modalImage2").attr("src", image2 || "/default-image.jpg");
 
                 // Show the modal
                 $("#userCheckModal").modal("show");
             });
-
-            $(".btnApprove").click(function () {
-                if (!selectedUserId) return;
-                $.ajax({
-                    url: "/Admin/ApproveUser",
-                    type: "POST",
-                    data: { id: selectedUserId },
-                    success: function () {
-                        alert("User Approved Successfully");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("Error approving user");
-                    }
-                });
-            });
-
-            $(".btnDecline").click(function () {
-                if (!selectedUserId) return;
-                if (!confirm("Are you sure you want to decline and delete this user?")) return;
-
-                $.ajax({
-                    url: "/Admin/DeleteUser",
-                    type: "POST",
-                    data: { id: selectedUserId },
-                    success: function () {
-                        alert("User Declined & Deleted");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("Error deleting user");
-                    }
-                });
-            });
         });
+
     </script>
 </body>
 </html>

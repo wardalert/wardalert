@@ -69,6 +69,7 @@ namespace wardalert.Pages.Register
                 return Page(); // Return the form with an error message
             }
 
+
             // **File Upload Handling**
             string filePath1 = null;
             if (UploadedFile1 != null && UploadedFile1.Length > 0)
@@ -121,7 +122,7 @@ namespace wardalert.Pages.Register
                     }
 
                     // Save relative path instead of absolute path
-                    filePath1 = "/uploads/" + uniqueFileName2;
+                    filePath2 = "/uploads/" + uniqueFileName2;
                 }
                 catch (Exception ex)
                 {

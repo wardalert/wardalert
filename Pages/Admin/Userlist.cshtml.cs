@@ -29,7 +29,7 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT trainingId , Name,Address,Phone, Gender FROM Userlist WHERE trainingId = @id";
+            string query = "SELECT trainingId , Name,Address,Phone, Gender, imagePath1 ,imagePath2 FROM Userlist WHERE trainingId = @id";
 
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -44,7 +44,8 @@ namespace wardalert.Pages.Admin
                     Address = reader.GetString("Address"),
                     Phone = reader.GetString("Phone"),
                     Gender = reader.GetString("Gender"),
-
+                    UploadedFile1 = reader.GetString("imagePath1"),
+                    UploadedFile2 = reader.GetString("imagePath2")
                 });
             }
             connection.Close();
@@ -59,11 +60,10 @@ namespace wardalert.Pages.Admin
             public string Phone { get; set; }
 
             public string Email { get; set; }
-
             public string Gender { get; set; }
-            public IFormFile UploadedFile1 { get; set; }
+            public string UploadedFile1 { get; set; }
 
-            public IFormFile UploadedFile2 { get; set; }
+            public string UploadedFile2 { get; set; }
 
         }
 
