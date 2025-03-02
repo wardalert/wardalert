@@ -18,10 +18,17 @@ namespace wardalert.Pages.Register
         public string Address { get; set; }
         [BindProperty]
         public string Phone { get; set; }
+
+        [BindProperty]
+        public string Email { get; set; }
         [BindProperty]
         public string Gender { get; set; }
         [BindProperty]
-        public IFormFile UploadedFile { get; set; } // File property
+        public IFormFile UploadedFile1 { get; set; }
+        [BindProperty]
+
+        public IFormFile UploadedFile2 { get; set; }
+        // File property
 
 
 
@@ -63,28 +70,58 @@ namespace wardalert.Pages.Register
             }
 
             // **File Upload Handling**
-            string filePath = null;
-            if (UploadedFile != null && UploadedFile.Length > 0)
+            string filePath1 = null;
+            if (UploadedFile1 != null && UploadedFile1.Length > 0)
             {
                 try
                 {
-                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                    if (!Directory.Exists(uploadsFolder))
+                    string uploadsFolder1 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                    if (!Directory.Exists(uploadsFolder1))
                     {
-                        Directory.CreateDirectory(uploadsFolder);
+                        Directory.CreateDirectory(uploadsFolder1);
                     }
 
                     // Generate a unique filename to avoid conflicts
-                    string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(UploadedFile.FileName);
-                    string fileSavePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    string uniqueFileName1 = Guid.NewGuid().ToString() + Path.GetExtension(UploadedFile1.FileName);
+                    string fileSavePath1 = Path.Combine(uploadsFolder1, uniqueFileName1);
 
-                    using (var fileStream = new FileStream(fileSavePath, FileMode.Create))
+                    using (var fileStream1 = new FileStream(fileSavePath1, FileMode.Create))
                     {
-                        UploadedFile.CopyTo(fileStream);
+                        UploadedFile1.CopyTo(fileStream1);
                     }
 
                     // Save relative path instead of absolute path
-                    filePath = "/uploads/" + uniqueFileName;
+                    filePath1 = "/uploads/" + uniqueFileName1;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("FileUploadError", "File upload failed: " + ex.Message);
+                    return Page();
+                }
+            }
+
+            string filePath2 = null;
+            if (UploadedFile2 != null && UploadedFile2.Length > 0)
+            {
+                try
+                {
+                    string uploadsFolder2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                    if (!Directory.Exists(uploadsFolder2))
+                    {
+                        Directory.CreateDirectory(uploadsFolder2);
+                    }
+
+                    // Generate a unique filename to avoid conflicts
+                    string uniqueFileName2 = Guid.NewGuid().ToString() + Path.GetExtension(UploadedFile2.FileName);
+                    string fileSavePath2 = Path.Combine(uploadsFolder2, uniqueFileName2);
+
+                    using (var fileStream2 = new FileStream(fileSavePath2, FileMode.Create))
+                    {
+                        UploadedFile2.CopyTo(fileStream2);
+                    }
+
+                    // Save relative path instead of absolute path
+                    filePath1 = "/uploads/" + uniqueFileName2;
                 }
                 catch (Exception ex)
                 {
@@ -95,14 +132,17 @@ namespace wardalert.Pages.Register
 
 
             // Insert the new user if training is not full
-            string query = "INSERT INTO Userlist (trainingId, name, address, phone, gender,imagePath) VALUES (@trainingId, @Name, @Address, @Phone, @Gender,@ImagePath)";
+            string query = "INSERT INTO Userlist (trainingId, name, address, phone,email, gender,imagePath1,imagePath2) VALUES (@trainingId, @Name, @Address, @Phone,@Email, @Gender,@ImagePath1,@ImagePath2)";
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@trainingId", trainingId);
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Gender", Gender);
-            command.Parameters.AddWithValue("@ImagePath", filePath ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@ImagePath1", filePath1 ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@ImagePath2", filePath2 ?? (object)DBNull.Value);
+
             command.ExecuteNonQuery();
 
             connection.Close();
