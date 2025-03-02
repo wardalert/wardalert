@@ -15,8 +15,7 @@
     <button onclick="history.back()" class="btn btn-secondary mb-3">Go Back</button>
 
     <div class="p-2">
-        <h2>User List of Training ID : @Model.Userlists.FirstOrDefault()?.TrainingId</h2>
-
+        <h2>User List of Training ID: @Model.Userlists.FirstOrDefault()?.TrainingId</h2>
     </div>
 
     <div class="container mt-5">
@@ -29,7 +28,9 @@
                         <th>Name</th>
                         <th>Address</th>
                         <th>Phone</th>
+                        <th>Email</th>
                         <th>Gender</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,21 +42,110 @@
                                 <td>@user.Name</td>
                                 <td>@user.Address</td>
                                 <td>@user.Phone</td>
+                                <td>@user.Email</td>
                                 <td>@user.Gender</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btnCheckUser"
+                                            data-userid="@user.id"
+                                            data-image1="@user.UploadedFile1"
+                                            data-image2="@user.UploadedFile2">
+                                        Check User
+                                    </button>
+                                </td>
                             </tr>
-                            }
-                    }else
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td colspan="4" class="text-center text-muted">No user records found.</td>
+                            <td colspan="5" class="text-center text-muted">No user records found.</td>
                         </tr>
-                    
                     }
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- User Verification Modal -->
+    <div class="modal fade" id="userCheckModal" tabindex="-1" aria-labelledby="userCheckModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userCheckModalLabel">User Verification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="modalImage1" class="img-fluid rounded border" alt="User Image 1">
+                        </div>
+                        <div class="col-md-6">
+                            <img id="modalImage2" class="img-fluid rounded border" alt="User Image 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btnApprove">Approve</button>
+                    <button type="button" class="btn btn-danger btnDecline">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            let selectedUserId;
+
+            $(".btnCheckUser").click(function () {
+                selectedUserId = $(this).data("userid");
+                let image1 = $(this).data("image1");
+                let image2 = $(this).data("image2");
+
+                // Set images in modal
+                $("#modalImage1").attr("src", image1);
+                $("#modalImage2").attr("src", image2);
+
+                // Show the modal
+                $("#userCheckModal").modal("show");
+            });
+
+            $(".btnApprove").click(function () {
+                if (!selectedUserId) return;
+                $.ajax({
+                    url: "/Admin/ApproveUser",
+                    type: "POST",
+                    data: { id: selectedUserId },
+                    success: function () {
+                        alert("User Approved Successfully");
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Error approving user");
+                    }
+                });
+            });
+
+            $(".btnDecline").click(function () {
+                if (!selectedUserId) return;
+                if (!confirm("Are you sure you want to decline and delete this user?")) return;
+
+                $.ajax({
+                    url: "/Admin/DeleteUser",
+                    type: "POST",
+                    data: { id: selectedUserId },
+                    success: function () {
+                        alert("User Declined & Deleted");
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Error deleting user");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

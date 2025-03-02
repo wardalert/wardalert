@@ -52,6 +52,7 @@ namespace wardalert.Pages.Admin
         }
         public class Userlist
         {
+            public int id { get; set; }
             public int TrainingId { get; set; }
             public required string Name { get; set; }
             public string Address { get; set; }
@@ -60,6 +61,9 @@ namespace wardalert.Pages.Admin
             public string Email { get; set; }
 
             public string Gender { get; set; }
+            public IFormFile UploadedFile1 { get; set; }
+
+            public IFormFile UploadedFile2 { get; set; }
 
         }
 
