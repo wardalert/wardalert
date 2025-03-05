@@ -50,6 +50,7 @@
                                 <td>
                                     <input type="hidden" class="hiddenImage1" value="@user.UploadedFile1" />
                                     <input type="hidden" class="hiddenImage2" value="@user.UploadedFile2" />
+                                    <input type="hidden" class="hiddenUserId" value="@user.id" />
 
                                     <button type="button" class="btn btn-primary btnCheckUser" data-userid="@user.id">
                                         Check User
@@ -101,53 +102,57 @@
     <script>
         $(document).ready(function () {
             let selectedUserId;
-        $(".btnCheckUser").click(function () {
-            let row = $(this).closest("tr");
-            selectedUserId = $(this).data("userid");
-            let image1 = row.find(".hiddenImage1").val();
-            let image2 = row.find(".hiddenImage2").val();
+            $(".btnCheckUser").click(function () {
+                let row = $(this).closest("tr");
+                selectedUserId = $(this).data("userid");
+                let image1 = row.find(".hiddenImage1").val();
+                let image2 = row.find(".hiddenImage2").val();
 
-            console.log("Image 1 path:", image1);
-            console.log("Image 2 path:", image2);
+                console.log("Image 1 path:", image1);
+                console.log("Image 2 path:", image2);
 
-            // Ensure correct image path
-            $("#modalImage1").attr("src", image1);
-            $("#modalImage2").attr("src", image2);
+                // Ensure correct image path
+                $("#modalImage1").attr("src", image1);
+                $("#modalImage2").attr("src", image2);
+
+                // Show the modal
+                $("#userCheckModal").modal("show");
+            });
 
 
-
-            // Show the modal
-            $("#userCheckModal").modal("show");
-        });
-
-        });
-
-        //btn approve
-        $(document).on('click','.btnApprove',function(){
-            let userId = $(this).closest("tr").find(".btnCheckUser").data("userid");
-                if (!userId) {
-            alert("User ID not found!");
-            return;
-        }
-
-        $.ajax({
-            method: 'POST',
-            url: '/Admin/Userlist?handler=UpdateStatus', 
-            data: { userId: userId, status: "Approved" },
-            success: function (resp) {
-                if (resp.success) {
-                    alert("User approved successfully!");
-                    location.reload(); // Refresh page after success
-                } else {
-                    alert("Error: " + resp.message);
+            //btn approve
+            $(document).on("click", ".btnApprove", function () {
+                if (!selectedUserId) {
+                    alert("User ID not found!");
+                    return;
                 }
-            },
-            error: function () {
-                alert("Something went wrong!");
-            }
-        });
-        })
 
+                let url = window.location.pathname +
+                    "?handler=UpdateStatus" +
+                    "&userId=" + encodeURIComponent(selectedUserId) +
+                    "&status=" + encodeURIComponent("Approved");
+
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    success: function (resp) {
+                        if (resp.success) {
+                            alert("User approved successfully!");
+                            location.reload(); // Refresh page after success
+                        } else {
+                            alert("Error: " + resp.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log("AJAX Error:", xhr.responseText);
+                        alert("Something went wrong!");
+                    }
+                });
+            });
+
+
+
+        });
     </script>
 </body>
 </html>
