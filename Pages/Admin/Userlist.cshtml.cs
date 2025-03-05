@@ -26,7 +26,7 @@ namespace wardalert.Pages.Admin
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT trainingId, Name, Address, Phone, Email, Gender,Status, imagePath1, imagePath2 FROM Userlist WHERE trainingId = @id";
+            string query = "SELECT id ,trainingId, Name, Address, Phone, Email, Gender,Status, imagePath1, imagePath2 FROM Userlist WHERE trainingId = @id";
 
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -36,6 +36,7 @@ namespace wardalert.Pages.Admin
             {
                 Userlists.Add(new Userlist
                 {
+                    id = reader.GetInt32("id"),
                     TrainingId = reader.GetInt32("trainingId"),
                     Name = reader.GetString("Name"),
                     Address = reader.GetString("Address"),
@@ -51,25 +52,47 @@ namespace wardalert.Pages.Admin
             connection.Close();
             return Page();
         }
-        public async Task<IActionResult> OnPostUpdateStatusAsync(int userId, string status)
+        public async Task<IActionResult> OnGetUpdateStatusAsync(int userId, string status)
         {
+            if (userId <= 0 || string.IsNullOrWhiteSpace(status))
+            {
+                return new JsonResult(new { success = false, message = "Invalid request data!" });
+            }
+
             using var connection = new MySqlConnection(_connectionString);
             await connection.OpenAsync();
 
+            // Check if user exists before updating
+            string checkQuery = "SELECT COUNT(*) FROM Userlist WHERE id = @userId";
+            using var checkCommand = new MySqlCommand(checkQuery, connection);
+            checkCommand.Parameters.AddWithValue("@userId", userId);
+            int userExists = Convert.ToInt32(await checkCommand.ExecuteScalarAsync());
+
+            if (userExists == 0)
+            {
+                return new JsonResult(new { success = false, message = "User ID not found!" });
+            }
+
+            // Update user status
             string query = "UPDATE Userlist SET Status = @status WHERE id = @userId";
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@userId", userId);
 
             int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
+
+            return new JsonResult(new
             {
-                return new JsonResult(new { success = true, message = "User status updated successfully!" });
-            }
-            else
-            {
-                return new JsonResult(new { success = false, message = "Failed to update status!" });
-            }
+                success = rowsAffected > 0,
+                message = rowsAffected > 0 ? "User status updated successfully!" : "Failed to update status!"
+            });
+        }
+
+
+        public class UpdateStatusRequest
+        {
+            public int UserId { get; set; }
+            public string Status { get; set; }
         }
 
         public class Userlist
