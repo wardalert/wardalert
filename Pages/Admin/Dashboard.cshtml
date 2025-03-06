@@ -4,7 +4,201 @@
     Layout = "_AdminLayout";
 }
 
-<div class="w-100 mt-lg-3">
-    <h1>Admin Dashboard</h1>
-    <h2>Welcome Back Chief</h2>
+<style>
+    .nepal-blue {
+        color: #003893;
+    }
+
+    .nepal-red {
+        color: #DC143C;
+    }
+
+    .nepal-blue-bg {
+        background-color: #003893;
+    }
+
+    .nepal-red-bg {
+        background-color: #DC143C;
+    }
+
+    .card-accent-blue {
+        border-left: 3px solid #003893;
+    }
+
+    .card-accent-red {
+        border-left: 3px solid #DC143C;
+    }
+
+    .dashboard-card {
+        transition: all 0.2s ease;
+    }
+
+        .dashboard-card:hover {
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        }
+
+    .card-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+    }
+
+    .table-header {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #003893;
+    }
+
+    .status-badge {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 0.2rem 0.6rem;
+        border-radius: 50rem;
+    }
+
+    .view-all-link {
+        font-size: 0.875rem;
+        color: #003893;
+    }
+
+        .view-all-link:hover {
+            text-decoration: underline;
+            color: #002970;
+        }
+
+    .view-all-icon {
+        width: 12px;
+        height: 12px;
+        margin-left: 4px;
+    }
+</style>
+
+<div class="container py-4">
+    <!-- Page Title -->
+    <div class="mb-4">
+        <h1 class="nepal-blue h3">Admin Dashboard</h1>
+        <p class="text-muted">Welcome back, Chief!</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <!-- Total Trainings -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm dashboard-card card-accent-blue">
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center mb-1">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        </svg>
+                        <span class="text-muted small">Total Trainings</span>
+                    </div>
+                    <h2 class="nepal-blue h4 mb-0">@Model.TotalTrainings</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Users -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm dashboard-card card-accent-red">
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center mb-1">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span class="text-muted small">Total Users</span>
+                    </div>
+                    <h2 class="nepal-red h4 mb-0">@Model.TotalUsers</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Trainings -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm dashboard-card card-accent-blue">
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center mb-1">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span class="text-muted small">Active Trainings</span>
+                    </div>
+                    <h2 class="nepal-blue h4 mb-0">@Model.ActiveTrainings</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Trainings Section -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header nepal-blue-bg text-white py-2">
+            <div class="d-flex align-items-center">
+                <svg class="card-icon text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <h5 class="mb-0">Recent Trainings</h5>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="table-header border-0">Training</th>
+                        <th class="table-header border-0">Start Date</th>
+                        <th class="table-header border-0">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var training in Model.RecentTrainings)
+                    {
+                        <tr>
+                            <td class="align-middle">@training.Title</td>
+                            <td class="align-middle text-muted">@training.StartDate.ToString("yyyy-MM-dd")</td>
+                            <td class="align-middle">
+                                @if (training.Status == "Ongoing")
+                                {
+                                    <span class="status-badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                                        @training.Status
+                                    </span>
+                                }
+                                else if (training.Status == "Completed")
+                                {
+                                    <span class="status-badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">
+                                        @training.Status
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25">
+                                        @training.Status
+                                    </span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    @if (!Model.RecentTrainings.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-3">No recent trainings found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer bg-light py-2">
+            <a href="/Admin/traininglist" class="view-all-link d-flex align-items-center">
+                View all trainings
+                <svg class="view-all-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
 </div>
