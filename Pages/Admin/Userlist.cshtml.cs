@@ -88,6 +88,40 @@ namespace wardalert.Pages.Admin
             });
         }
 
+        public async Task<IActionResult> OnGetDeleteUserAsync(int userId)
+        {
+            if (userId <= 0)
+            {
+                return new JsonResult(new { success = false, message = "Invalid User ID!" });
+            }
+
+            using var connection = new MySqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            // Check if user exists before deleting
+            string checkQuery = "SELECT COUNT(*) FROM Userlist WHERE id = @userId";
+            using var checkCommand = new MySqlCommand(checkQuery, connection);
+            checkCommand.Parameters.AddWithValue("@userId", userId);
+            int userExists = Convert.ToInt32(await checkCommand.ExecuteScalarAsync());
+
+            if (userExists == 0)
+            {
+                return new JsonResult(new { success = false, message = "User ID not found!" });
+            }
+
+            // Delete user
+            string deleteQuery = "DELETE FROM Userlist WHERE id = @userId";
+            using var deleteCommand = new MySqlCommand(deleteQuery, connection);
+            deleteCommand.Parameters.AddWithValue("@userId", userId);
+
+            int rowsAffected = await deleteCommand.ExecuteNonQueryAsync();
+
+            return new JsonResult(new
+            {
+                success = rowsAffected > 0,
+                message = rowsAffected > 0 ? "User deleted successfully!" : "Failed to delete user!"
+            });
+        }
 
         public class UpdateStatusRequest
         {
