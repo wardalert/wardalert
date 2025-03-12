@@ -77,33 +77,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-
-
-   <!--
-
-   <script>
-        // Function to generate random kites
-        function generateKites(count) {
-            const container = document.getElementById('kite-container');
-
-            for (let i = 0; i < count; i++) {
-                const kite = document.createElement('div');
-                kite.className = 'floating-kite';
-                kite.style.left = Math.random() * 80 + '%';
-                kite.style.top = Math.random() * 80 + '%';
-                kite.style.animationDelay = Math.random() * 10 + 's';
-                kite.style.opacity = 0.3 + Math.random() * 0.3; // Random translucency
-                kite.style.width = 80 + Math.random() * 40 + 'px'; // Random size
-                kite.style.height = kite.style.width;
-
-
-                container.appendChild(kite);
-            }
-        }
-
-        // Generate 10 kites
-        generateKites(10);
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
    -->
 </body>
