@@ -48,6 +48,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-danger" asp-area="" asp-page="/Events">Events</a>
                         </li>
+                        @*
+<<<<<<< HEAD
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-danger" href="#" id="trainingsDropdown" role="button" data-bs-toggle="dropdown">
                                 All Trainings
@@ -57,6 +59,30 @@
                                 <li><a class="dropdown-item text-danger" href="/Trainings/Upcoming">Upcoming Trainings</a></li>
                                 <li><a class="dropdown-item text-danger" href="/Trainings/Expired">Expired Trainings</a></li>
                             </ul>
+=======
+                         <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Trainings
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="~/Trainings/Ongoing">Ongoing Trainings</a></li>
+                        <li><a class="dropdown-item" href="~/Trainings/Upcoming">Upcoming Trainings</a></li>
+                        <li><a class="dropdown-item" href="~/Trainings/Expired">Expired Trainings</a></li>
+                        </ul>
+                        </li> *@
+                        <li>
+
+                            <div class="dropdown">
+                                <button class="dropbtn text-danger">
+                                    All Trainings
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-content text-danger">
+                                    <a href="/Trainings/Ongoing">Ongoing Trainings</a>
+                                    <a href="/Trainings/Upcoming">Upcoming Trainings</a>
+                                    <a href="/Trainings/Expired">Expired Trainings</a>
+                                </div>
+                            </div>
                         </li>
 
                         <!-- Admin Login or Dashboard -->
@@ -82,7 +108,7 @@
     <div class="bg-danger text-white py-2">
         <div class="marquee-wrapper">
             <div class="marquee-content">
-                Welcome to ललितपुर महानगरपालिका | Stay updated with our events and trainings. 
+                Welcome to Lukhunsi | Stay updated with our events and trainings. 
             </div>
         </div>
     </div>
