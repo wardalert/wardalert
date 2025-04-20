@@ -39,6 +39,7 @@
                         @foreach (var user in Model.Userlists)
                         {
                             <tr>
+                        <input type="hidden" class="userid" value="@user.id"/>
                                 <td>@user.Name</td>
                                 <td>@user.Address</td>
                                 <td>@user.Phone</td>
@@ -102,12 +103,12 @@
     <script>
         $(document).ready(function () {
             let selectedUserId;
-
-            $(".btnCheckUser").click(function () {
-                let row = $(this).closest("tr");
-                selectedUserId = $(this).data("userid");
-                let image1 = row.find(".hiddenImage1").val();
-                let image2 = row.find(".hiddenImage2").val();
+        $(".btnCheckUser").click(function () {
+            let row = $(this).closest("tr");
+            selectedUserId = $(this).data("userid");
+            console.log(selectedUserId);
+            let image1 = row.find(".hiddenImage1").val();
+            let image2 = row.find(".hiddenImage2").val();
 
                 console.log("Image 1 path:", image1);
                 console.log("Image 2 path:", image2);
@@ -156,11 +157,13 @@
                 });
             });
 
-            function updateUserStatus(userId, status) {
+        //btn approve
+        $(document).on('click','.btnApprove',function(){
+            let userId = $(this).closest("tr").find(".btnCheckUser").data("userid");
                 if (!userId) {
-                    alert("User ID not found!");
-                    return;
-                }
+            alert("User ID not found!");
+            return;
+        }
 
                 let url = window.location.pathname +
                     "?handler=UpdateStatus" +
