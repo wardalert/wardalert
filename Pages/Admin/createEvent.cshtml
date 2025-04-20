@@ -1,4 +1,39 @@
 ﻿@page
 @model wardalert.Pages.Admin.createEventModel
 @{
+    Layout = "_AdminLayout";
 }
+
+<div style="display: grid; place-items: center; min-height: 80vh;">
+    <div style="width: 90%; max-width: 500px;">
+        <h3 style="margin-left:2rem;">@(Model.id > 0 ? "Edit Event" : "Add Event")</h3>
+
+        <form method="post" style="margin: 20px 0;">
+            <input type="hidden" asp-for="id" />
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Title</label>
+                <input asp-for="Title" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" required>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Description</label>
+                <textarea asp-for="Description" style="width: 100%; padding: 8px; height: 100px; border: 1px solid #ddd; border-radius: 4px;" required></textarea>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Date</label>
+                <input asp-for="UploadedAt" type="date" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" required>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" style="padding: 8px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    @(Model.id > 0 ? "Update" : "Save")
+                </button>
+                <a href="/Admin/Dashboard" style="padding: 8px 20px; margin-left: 10px; display: inline-block; background: #f0f0f0; color: #333; text-decoration: none; border-radius: 4px;">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
