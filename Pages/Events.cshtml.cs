@@ -14,7 +14,7 @@ namespace wardalert.Pages
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT  id , Title, Description FROM event";
+            string query = "SELECT  id , Title, Description , UploadedAt FROM event";
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
 
@@ -24,7 +24,8 @@ namespace wardalert.Pages
                 {
                     id = reader.GetInt32("id"),
                     Title = reader.GetString("Title"),
-                    Description = reader.GetString("Description")
+                    Description = reader.GetString("Description"),
+                    UploadedAt = reader.GetDateTime("UploadedAt")
                 });
             }
             connection.Close();
