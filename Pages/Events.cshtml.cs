@@ -14,7 +14,7 @@ namespace wardalert.Pages
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT  id , Title, Description , UploadedAt FROM event";
+            string query = "SELECT  id , Title, Description , UploadedAt FROM event ORDER BY UploadedAt DESC";
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
 

@@ -15,10 +15,11 @@
         {
             @foreach (var ev in Model.Events)
             {
-                <div class="mb-4 pb-3 border-bottom">
-                    <h2 class="h5 text-primary">@ev.Title</h2>
-                    <p class="text-body">@ev.Description</p>
-                    <small class="text-muted">Uploaded on @ev.UploadedAt.ToString("MMMM dd, yyyy")</small>
+                <div class="mb-4 pb-3 border-bottom bg-white">
+                    <!-- bg-white creates a white gap between articles -->
+                    <h2 class="h5 px-2 pt-2 text-primary">@ev.Title</h2>
+                    <p class="text-body px-2 pt-2">@ev.Description</p>
+                    <small class="text-muted  d-flex px-4 justify-content-end">Uploaded on @ev.UploadedAt.ToString("MMMM dd, yyyy")</small>
                 </div>
             }
         }
