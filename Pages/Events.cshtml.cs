@@ -14,7 +14,7 @@ namespace wardalert.Pages
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT  Title, Description FROM training WHERE Status = 'Ongoing'";
+            string query = "SELECT  id , Title, Description FROM event";
             using var command = new MySqlCommand(query, connection);
             using var reader = command.ExecuteReader();
 

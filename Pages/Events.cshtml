@@ -1,27 +1,32 @@
 ﻿@page
 @model wardalert.Pages.EventsModel
 @{
+    ViewData["Title"] = "Ward Events";
 }
 
+<div class="container mt-4">
+    <div class="text-center mb-4 pb-2 border-bottom">
+        <h1 class="text-dark">@ViewData["Title"]</h1>
+        <p class="text-muted">Latest events and updates from your ward</p>
+    </div>
 
-<h2>Event List</h2>
-
-<table border="1" cellpadding="10">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Uploaded At</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Events)
+    <div class="bg-light rounded-3 p-3 p-md-4 shadow-sm">
+        @if (Model.Events.Any())
         {
-            <tr>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td>@item.UploadedAt.ToString("yyyy-MM-dd HH:mm")</td>
-            </tr>
+            @foreach (var ev in Model.Events)
+            {
+                <div class="mb-4 pb-3 border-bottom">
+                    <h2 class="h5 text-primary">@ev.Title</h2>
+                    <p class="text-body">@ev.Description</p>
+                    <small class="text-muted">Uploaded on @ev.UploadedAt.ToString("MMMM dd, yyyy")</small>
+                </div>
+            }
         }
-    </tbody>
-</table>
+        else
+        {
+            <div class="text-center text-muted p-4">
+                No events available at the moment.
+            </div>
+        }
+    </div>
+</div>
