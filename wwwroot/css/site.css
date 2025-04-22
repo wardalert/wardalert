@@ -230,4 +230,33 @@ form {
 }
 
 
-       
+/*Marquee css and animation */
+.marquee-wrapper {
+    width: 100%;
+    padding-top:80px;
+/*
+    height: 50px; 
+    overflow: hidden;
+    position: relative; */
+}
+
+
+.marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    font-size: 18px; /* Adjust for readability */
+    color: black; /* Ensure visibility */
+    animation: marquee 10s linear infinite;
+}
+
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
