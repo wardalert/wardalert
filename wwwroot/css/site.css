@@ -232,22 +232,27 @@ form {
 
 /*Marquee css and animation */
 .marquee-wrapper {
+    font-family: 'Courier New', monospace;
     width: 100%;
-    padding-top:80px;
-/*
-    height: 50px; 
+    padding-top:75px;
+    position: absolute;
+    min-height: 75px; 
+    background-color:red;
     overflow: hidden;
-    position: relative; */
+/*
+
+*/
 }
 
 
 .marquee-content {
+    margin-bottom:8px;
     display: inline-block;
     white-space: nowrap;
     padding-left: 100%;
     font-size: 18px; /* Adjust for readability */
     color: black; /* Ensure visibility */
-    animation: marquee 10s linear infinite;
+    animation: marquee 20s linear infinite;
 }
 
 
