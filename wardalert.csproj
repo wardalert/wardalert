@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Shared\_AdminLayout.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\training-cards.css" />
   </ItemGroup>
 
   <ItemGroup>
